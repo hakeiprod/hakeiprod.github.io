@@ -10,6 +10,8 @@ export default function Home() {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        opacity: 1,
+        animation: "2s ease 0s fadeIn",
       }}
     >
       <img
