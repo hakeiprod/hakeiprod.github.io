@@ -31,7 +31,7 @@ const Image = ({ url }: { url: string }) => {
           active // toggle on/off
           ratio={0.1}
         />
-        <Noise opacity={0.03} />
+        <Noise opacity={0.2} />
       </EffectComposer>
     </sprite>
   );
@@ -53,7 +53,7 @@ export default function Home() {
         dpr={devicePixelRatio}
         flat
       >
-        <color attach="background" args={[0.01, 0.01, 0.01]} />
+        <color attach="background" args={[0.001, 0.001, 0.001]} />
         <Image url="/logo_typo_transparent_1000x1000.png" />
       </Canvas>
     </div>
