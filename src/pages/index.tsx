@@ -1,8 +1,10 @@
 import { Inter } from "@next/font/google";
 import { Canvas, useLoader } from "@react-three/fiber";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
-import { TextureLoader } from "three";
+import { EffectComposer, Glitch, Noise } from "@react-three/postprocessing";
+import { GlitchMode } from "postprocessing";
+import { Vector2 } from "three";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,17 @@ const Image = ({ url }: { url: string }) => {
   return (
     <sprite scale={7}>
       <spriteMaterial map={texture} />
-      {/* <shaderMaterial /> */}
+      <EffectComposer>
+        <Glitch
+          delay={new Vector2(1, 3)}
+          duration={new Vector2(0, 0.1)}
+          strength={new Vector2(0, 0.2)}
+          mode={GlitchMode.SPORADIC} // try CONSTANT_MILD
+          active // toggle on/off
+          ratio={0.1}
+        />
+        <Noise opacity={0.03} />
+      </EffectComposer>
     </sprite>
   );
 };
@@ -41,7 +53,7 @@ export default function Home() {
         dpr={devicePixelRatio}
         flat
       >
-        <color attach="background" args={[0, 0, 0]} />
+        <color attach="background" args={[0.01, 0.01, 0.01]} />
         <Image url="/logo_typo_transparent_1000x1000.png" />
       </Canvas>
     </div>
